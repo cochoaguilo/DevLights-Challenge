@@ -2,14 +2,6 @@ const fs = require('fs')
 
 const file = require('../json/deals.json')
 
-/* const deals = fs.readFile('./json/deals.json', 'utf-8', (err, jsonString)=>{
-    if (err) {
-        console.log(err);
-    } else {
-        console.log('done');
-        return JSON.parse(jsonString)
-    }
-}) */
 
 const getData = (req, res) =>{
     
@@ -19,21 +11,17 @@ const getData = (req, res) =>{
 const getByPrice = (req, res) =>{
     const filtroPrecio = req.query.sale;
     const num  = parseInt(filtroPrecio)
-    console.log(filtroPrecio);
+    
     const filterbyPrice = file.filter(element =>{
-        if(element.salePrice> num){
-            console.log(element.salePrice);
-            return element.salePrice
+        return element.salePrice > num
         }
-    })
+    )
 
 
-if(filterbyPrice === ''){
+if(filterbyPrice.length === 0){
     return res.status(404).json({message: 'no encontrado', data: filterbyPrice})
 
-}
-
-    if(filterbyPrice){
+}   else{
         res.status(200).json({message:'encontrado', data:filterbyPrice})
     } 
     
@@ -46,7 +34,7 @@ const getbyTitle = (req, res) =>{
     
 
     const filterbyTitle = file.filter(element=>{
-        return element.title === filtro
+        return element.title === filtro || element.title.includes(filtro)
     })
 
     res.status(200).json({data: filterbyTitle})

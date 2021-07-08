@@ -1,50 +1,56 @@
-import {Box, Image, Text, WrapItem, Wrap, Badge} from '@chakra-ui/react'
+import {
+  Box,
+  Image,
+  
+} from "@chakra-ui/react";
+import StarRatingComponent from "react-star-rating-component";
 
 const Game = (props) => {
-    console.log(props);
-    return ( 
-        <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
-        <Image src={props.imageUrl} />
   
-        <Box p="6">
-          <Box d="flex" alignItems="baseline">
-            <Box
-              color="gray.500"
-              fontWeight="semibold"
-              letterSpacing="wide"
-              fontSize="xs"
-              textTransform="uppercase"
-              ml="2"
-            >
-              {props.beds} beds &bull; {props.baths} baths
-            </Box>
-          </Box>
-  
-          <Box
-            mt="1"
-            fontWeight="semibold"
-            as="h4"
-            lineHeight="tight"
-            isTruncated
-          >
-            {props.title}
-          </Box>
-  
-          <Box>
-            {props.formattedPrice}
-            <Box as="span" color="gray.600" fontSize="sm">
-              / wk
-            </Box>
-          </Box>
-  
-          <Box d="flex" mt="2" alignItems="center">
-            <Box as="span" ml="2" color="gray.600" fontSize="sm">
-              {props.reviewCount} reviews
-            </Box>
-          </Box>
+  return (
+    <Box w="220px" borderWidth="1px" borderRadius="lg" overflow="hidden">
+      <Image src={props.imageUrl} width="100%" height='100px' />
+
+      <Box p="6">
+        <Box
+          mt="1"
+          fontWeight="semibold"
+          as="h4"
+          height='60px'
+          position='relative'
+          width='100%'
+        >
+          {props.title}
         </Box>
+        <div
+          
+        >
+          <Box d="flex" mt="2" alignItems="center" flexDirection='column'>
+            <h2 as="span" ml="2" color="white" fontSize="sm">
+              Steam reviews
+            </h2>
+            <br/>
+            <StarRatingComponent
+              name="rate1"
+              starCount={10}
+              value={parseInt(props.rating)}
+            />
+          </Box>
+        </div>
       </Box>
-     );
-}
- 
+      <Box
+        d='flex' margin='auto'
+        maxW="50%" borderWidth="1px" borderRadius="lg"
+        alignItems="center" flexDirection='row'
+        letterSpacing="wide"
+        bgGradient="linear(to-r, green.200, pink.500)" 
+        marginBottom='15px'
+      >
+        <h3 style={{textDecoration:'line-through', margin:'14px', fontSize:'10px' }}>{props.price}</h3>
+        <h1 style={{fontSize:'18px'}}>{props.salePrice}</h1>
+      </Box>
+    </Box>
+  );
+};
+
 export default Game;

@@ -1,12 +1,14 @@
 import axios from 'axios';
 import {useEffect, useState} from 'react'
 import Game from './Game'
-import { Wrap, WrapItem, Flex} from '@chakra-ui/react'
+import { Flex} from '@chakra-ui/react'
 
 const ListadoGames = () => {
 
 
     const [data, saveData] = useState([])
+
+    
 
     useEffect(()=>{
 
@@ -23,7 +25,11 @@ const ListadoGames = () => {
         apiGET()
     },[])
     
-    return ( <ul style={{display:'flex', flexWrap:'wrap', margin:'5% 5%'}}>{data.map(game=>{
+    return ( 
+
+        <div>
+            
+    <ul style={{display:'flex', flexWrap:'wrap', margin:'5% 5%'}}>{data.map(game=>{
 
         return(
         <Flex
@@ -40,13 +46,19 @@ const ListadoGames = () => {
         mb={16}
         >
         <Game 
+            key={game.gameID}
             title={game.title} 
             imageUrl={game.thumb} 
             rating={game.dealRating}
+            price={game.normalPrice}
+            salePrice={game.salePrice}
             />
         </Flex>
             )
-    })}</ul>);
+    })}</ul>
+    
+    </div>
+    );
 }
  
 export default ListadoGames;

@@ -4,7 +4,9 @@ import Navbar from './Components/Navbar'
 import {Fragment} from 'react'
 import ListadoGames from './Components/ListadoGames'
 import Filter from './Components/Filter'
-import {ChakraProvider} from '@chakra-ui/react'
+import Footer from './Components/Footer'
+import {ChakraProvider, Image} from '@chakra-ui/react'
+import mainImage from'./202121015552089_1.jpeg'
 
 function App() {
   return (
@@ -12,8 +14,10 @@ function App() {
     <Fragment>
       <ChakraProvider >
       <Navbar />
+      <Image src = {mainImage} htmlWidth='100%'/>
       <Filter />
       <ListadoGames />
+      <Footer />
       </ChakraProvider>
     </Fragment>
    
